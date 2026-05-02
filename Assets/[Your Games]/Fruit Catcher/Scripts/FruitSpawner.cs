@@ -1,36 +1,37 @@
 using UnityEngine;
+using System.Collections;
 
 public class FruitSpawner : MonoBehaviour
 {
-    public GameObject fruitPrefab;
-    
-    [Header("Spawn Settings")]
-    public float spawnInterval = 2f;
-    public float spawnWidthX = 3f;
-    
-    private float spawnTimer = 0f;
-
-    private void Update()
+    private void Start()
     {
-        if (FruitGameManager.Instance != null && !FruitGameManager.Instance.isGameActive)
-            return;
-
-        spawnTimer -= Time.deltaTime;
-        
-        if (spawnTimer <= 0f)
-        {
-            SpawnFruit();
-            spawnTimer = spawnInterval;
-        }
+        StartCoroutine(SpawnRoutine());
     }
 
-    private void SpawnFruit()
+    private IEnumerator SpawnRoutine()
     {
-        if (fruitPrefab == null) return;
+        while (true)
+        {
+            if (FruitGameManager.Instance == null || !FruitGameManager.Instance.isGameActive)
+            {
+                yield return null;
+                continue;
+            }
 
-        float randomX = Random.Range(-spawnWidthX, spawnWidthX);
-        Vector3 spawnPos = transform.position + new Vector3(randomX, 0, 0);
+            GameObject[] prefabs = FruitGameManager.Instance.fruitPrefabs;
 
-        Instantiate(fruitPrefab, spawnPos, Quaternion.identity);
+            if (prefabs != null && prefabs.Length > 0)
+            {
+                float minX = FruitGameManager.Instance.spawnMinX;
+                float maxX = FruitGameManager.Instance.spawnMaxX;
+
+                float randomX = Random.Range(minX, maxX);
+                Vector3 spawnPos = new Vector3(randomX, transform.position.y, 0f);
+                int randomIndex = Random.Range(0, prefabs.Length);
+                Instantiate(prefabs[randomIndex], spawnPos, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(FruitGameManager.Instance.spawnInterval);
+        }
     }
 }
