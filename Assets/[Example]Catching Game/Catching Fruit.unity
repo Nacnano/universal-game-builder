@@ -2174,9 +2174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bindings:
   - actionType: 3
-    keys: 140100004c010000
-  - actionType: 4
     keys: 130100004b010000
+  - actionType: 4
+    keys: 130100004c010000
   - actionType: 2
     keys: 1b0000004f010000
 --- !u!4 &1889960605

@@ -148,9 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3dad42b3aed6fa4ea381032c758bb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FruitSpawner
-  fruitPrefab: {fileID: 4746525729148024876, guid: 289596333da87fe49b29b0869f1a4f32, type: 3}
-  spawnInterval: 1.5
-  spawnWidthX: 3
 --- !u!4 &51400550
 Transform:
   m_ObjectHideFlags: 0
@@ -333,11 +330,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FruitGameManager
   isGameActive: 0
-  score: 0
-  health: 3
+  fruitPrefabs: []
+  spawnInterval: 1.5
+  spawnMinX: -6
+  spawnMaxX: 6
+  maxHealth: 3
+  currentHealth: 0
+  currentScore: 0
+  mainMenuPanel: {fileID: 0}
+  startButton: {fileID: 0}
   scoreText: {fileID: 0}
-  healthText: {fileID: 0}
+  healthFill: {fileID: 0}
   gameOverPanel: {fileID: 0}
+  retryButton: {fileID: 0}
+  quitButton: {fileID: 0}
+  cameraShake: {fileID: 0}
+  damageShakeDuration: 0.2
+  damageShakeAmount: 0.1
+  gameOverShakeDuration: 0.5
+  gameOverShakeAmount: 0.3
 --- !u!4 &421696993
 Transform:
   m_ObjectHideFlags: 0
@@ -808,11 +819,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FruitGameManager
   isGameActive: 0
-  score: 0
-  health: 3
+  fruitPrefabs: []
+  spawnInterval: 1.5
+  spawnMinX: -6
+  spawnMaxX: 6
+  maxHealth: 3
+  currentHealth: 0
+  currentScore: 0
+  mainMenuPanel: {fileID: 0}
+  startButton: {fileID: 0}
   scoreText: {fileID: 768615445}
-  healthText: {fileID: 1982094625}
+  healthFill: {fileID: 0}
   gameOverPanel: {fileID: 863585402}
+  retryButton: {fileID: 0}
+  quitButton: {fileID: 0}
+  cameraShake: {fileID: 0}
+  damageShakeDuration: 0.2
+  damageShakeAmount: 0.1
+  gameOverShakeDuration: 0.5
+  gameOverShakeAmount: 0.3
 --- !u!1 &1625569951
 GameObject:
   m_ObjectHideFlags: 0
