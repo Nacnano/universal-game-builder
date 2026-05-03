@@ -75,6 +75,7 @@ _A "Prefab" is a template. We make an object once, save it as a file, and then t
    - Click and drag `FireBreath` from the **Hierarchy** down into the **Project Window** (inside your Dragon Run folder). You will see it create a blue cube icon. This is your Prefab!
    - Now delete `FireBreath` from the Hierarchy (Right-click > Delete). We only needed the template.
    - **IMPORTANT:** Click your `DragonPlayer` again. Find the `DragonController` script, and drag your new blue `FireBreath` prefab from the Project window into the "Fire Breath Prefab" slot.
+   - **HOW TO SHOOT:** When playing, press `Left Control` (or your PLAKOD `MoveRight` output) to blast fireballs!
 
 ---
 

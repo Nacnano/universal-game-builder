@@ -13,7 +13,9 @@ public class FireBreath : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
+        // Using Dynamic allows velocity to work perfectly without gravity pulling it down
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = 0f;
     }
 
     private void Start()
