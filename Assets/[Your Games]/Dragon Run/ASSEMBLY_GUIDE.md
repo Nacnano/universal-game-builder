@@ -126,7 +126,7 @@ _A "Prefab" is a template. We make an object once, save it as a file, and then t
    - **CRITICAL STEP FOR HEALTH BAR:** In the Inspector for `HealthFill`, find the **Source Image** box (it usually says "None"). Click the tiny circle next to it and select **Background** or **UISprite** (default Unity squares).
    - _Once a Source Image is selected_, the **Image Type** dropdown will appear just below it! Change **Image Type** to **Filled**. Set **Fill Method** to **Horizontal** and change its color to Red.
 3. **Make the Main Menu Panel:**
-   - Right-click Canvas > **UI > Panel**. Name it `MainMenuPanel`. 
+   - Right-click Canvas > **UI > Panel**. Name it `MainMenuPanel`.
      - **Appearance fix:** By default, Unity Panels are quite transparent. In the Inspector, click the **Color** box. Set it to **Black**, and then increase the **A (Alpha)** slider at the bottom to `200` or `230` to make it much darker and less transparent.
    - Right-click `MainMenuPanel` > **UI > Button - TextMeshPro**. Change the text child to say "Start".
    - Click the Button. Scroll down in the Inspector to "On Click ()". Click the **+** sign. Drag the `GameManagers` object from your Hierarchy into the empty object slot. Click the "No Function" dropdown > `DragonGameManager` > `StartGame()`.
