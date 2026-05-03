@@ -55,6 +55,32 @@ public class DragonGameManager : MonoBehaviour
 
             UpdateScoreUI();
         }
+        else
+        {
+            // If the game is not active (MainMenu or GameOver), allow pressing 'MoveRight' to Start/Restart
+            bool startInput = false;
+            if (GameInputManager.Instance != null)
+            {
+                startInput = GameInputManager.Instance.IsActionDown(InputActionType.MoveRight) ||
+                             GameInputManager.Instance.IsActionDown(InputActionType.LiftRightPlatform);
+            }
+            else
+            {
+                startInput = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
+            }
+
+            if (startInput)
+            {
+                if (mainMenuPanel != null && mainMenuPanel.activeSelf)
+                {
+                    StartGame();
+                }
+                else if (gameOverPanel != null && gameOverPanel.activeSelf)
+                {
+                    RestartGame();
+                }
+            }
+        }
     }
 
     public void StartGame()
