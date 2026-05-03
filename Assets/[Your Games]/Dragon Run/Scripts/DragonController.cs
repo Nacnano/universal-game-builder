@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Spine.Unity;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class DragonController : MonoBehaviour
@@ -16,8 +17,14 @@ public class DragonController : MonoBehaviour
     public Transform fireSpawnPoint;
     public float fireCooldown = 1f;
 
-    [Header("Visuals (Optional)")]
+    [Header("Visuals (Spine 2D)")]
     public Transform dragonVisual;
+    public SkeletonAnimation dragonSkeleton;
+    [SpineAnimation(dataField: "dragonSkeleton")] public string walkAnimationName = "Walk";
+    [SpineAnimation(dataField: "dragonSkeleton")] public string flyAnimationName = "Walk"; // Or use Attack/Idle if no Fly exists
+    [SpineAnimation(dataField: "dragonSkeleton")] public string attackAnimationName = "Attack";
+    [SpineAnimation(dataField: "dragonSkeleton")] public string deadAnimationName = "Dead";
+    
     public Vector3 flyScale = new Vector3(1.1f, 1.1f, 1f);
     public Vector3 walkScale = new Vector3(1f, 1f, 1f);
 
@@ -33,6 +40,10 @@ public class DragonController : MonoBehaviour
     private void Start()
     {
         transform.position = new Vector3(transform.position.x, walkDownY, transform.position.z);
+        if (dragonSkeleton != null && !string.IsNullOrEmpty(walkAnimationName))
+        {
+            dragonSkeleton.AnimationState.SetAnimation(0, walkAnimationName, true);
+        }
     }
 
     private void Update()
@@ -67,6 +78,9 @@ public class DragonController : MonoBehaviour
             
             if (dragonVisual != null)
                 dragonVisual.DOScale(flyScale, transitionDuration);
+
+            if (dragonSkeleton != null && !string.IsNullOrEmpty(flyAnimationName))
+                dragonSkeleton.AnimationState.SetAnimation(0, flyAnimationName, true);
         }
         else if (!flyInput && isFlying)
         {
@@ -75,6 +89,9 @@ public class DragonController : MonoBehaviour
             
             if (dragonVisual != null)
                 dragonVisual.DOScale(walkScale, transitionDuration);
+
+            if (dragonSkeleton != null && !string.IsNullOrEmpty(walkAnimationName))
+                dragonSkeleton.AnimationState.SetAnimation(0, walkAnimationName, true);
         }
     }
 
@@ -109,6 +126,12 @@ public class DragonController : MonoBehaviour
             Instantiate(fireBreathPrefab, fireSpawnPoint.position, fireSpawnPoint.rotation);
         }
 
+        // Spine attack animation layered on track 1 so it doesn't interrupt the leg/wing cycle completely
+        if (dragonSkeleton != null && !string.IsNullOrEmpty(attackAnimationName))
+        {
+            dragonSkeleton.AnimationState.SetAnimation(1, attackAnimationName, false);
+        }
+
         // Visual feedback for firing
         if (dragonVisual != null)
         {
@@ -126,6 +149,11 @@ public class DragonController : MonoBehaviour
         {
             DragonGameManager.Instance.TakeDamage(1);
 
+            // Play dead animation if dead, otherwise hit flash
+            if (dragonSkeleton != null && !string.IsNullOrEmpty(deadAnimationName) && DragonGameManager.Instance.currentHealth <= 0)
+            {
+                dragonSkeleton.AnimationState.SetAnimation(2, deadAnimationName, false);
+            }
             // Give a momentary immune flash or push back effect
             if (dragonVisual != null)
             {

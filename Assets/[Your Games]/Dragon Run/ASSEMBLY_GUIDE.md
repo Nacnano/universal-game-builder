@@ -54,10 +54,14 @@ Welcome to Unity! If you are new to the engine, don't worry. This guide explains
    - Under the Rigidbody2D settings, find **Body Type** and change it from "Dynamic" to **Kinematic** (this stops gravity from making our dragon fall off the screen).
 3. **Add the Script & Visuals:**
    - Add the `DragonController` script via the Add Component button.
-   - Now, right-click `DragonPlayer` in the Hierarchy and select **2D Object > Sprite**. Rename this to `Visuals`.
-   - Click `Visuals`. In the Inspector under Sprite Renderer, click the little circle next to the "Sprite" slot and choose your dragon character image!
+   - Now, right-click `DragonPlayer` in the Hierarchy and select **Create Empty**. Rename this to `Visuals`.
+   - **Adding your Spine Dragon:** Open `Assets` > `Fantazia Animated 2D Monsters` > `Source_Animations` > `Monster_27_28_29_Dragon`. Find the asset named `monster_08_SkeletonData` (it looks like a little Spine ghost icon).
+   - Drag `monster_08_SkeletonData` into your Scene View directly onto your `Visuals` object. A popup might appear asking what to create—select **SkeletonAnimation**.
+   - Make sure your Spine dragon faces the right way inside the `Visuals` container. You might need to change its **Scale X** to `-0.5` or `0.5` depending on how large you want it.
    - Right-click `DragonPlayer` again > **Create Empty**. Rename it to `FireSpawnPoint`. In its Transform, set position to `X: 2, Y: 0` (so fire comes out in front of the dragon).
-   - Click `DragonPlayer` one last time. Drag `Visuals` from the Hierarchy into the "Dragon Visual" slot on the script. Drag `FireSpawnPoint` into the "Fire Spawn Point" slot.
+   - Click `DragonPlayer` one last time to look at the script. Drag `Visuals` from the Hierarchy into the "Dragon Visual" slot **AND** the inside `Visuals` child holding the SkeletonAnimation into the "Dragon Skeleton" slot.
+   - In the script you will see string slots for animations! Type exactly: `Walk` for walk, `Walk` for fly (since dragons flap while walking), `Attack` for attack, and `Dead` for dead.
+   - Drag `FireSpawnPoint` into the "Fire Spawn Point" slot.
 
 ---
 
