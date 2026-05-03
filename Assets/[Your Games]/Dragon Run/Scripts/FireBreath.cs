@@ -31,9 +31,6 @@ public class FireBreath : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            // Destroy enemy upon collision
-            Destroy(collision.gameObject);
-            
             // Score bonus or visual effect
             if (DragonGameManager.Instance != null)
                 DragonGameManager.Instance.distanceWalked += 10f; // Bonus distance for killing monster
@@ -42,9 +39,31 @@ public class FireBreath : MonoBehaviour
             if (impactEffectPrefab != null)
                 Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
 
-            Destroy(gameObject);
+            // Handle the death animation instead of instant vanishing
+            collision.enabled = false; // Disable collision so the dragon doesn't get hurt passing through the dying corpse
+            
+            Spine.Unity.SkeletonAnimation spineMonster = collision.GetComponentInChildren<Spine.Unity.SkeletonAnimation>();
+            if (spineMonster != null)
+            {
+                spineMonster.AnimationState.SetAnimation(0, "Dead", false);
+                
+                // Optional: Stop the monster from moving forward toward the dragon, or let it scroll dead
+                ScrollingObject scroller = collision.GetComponent<ScrollingObject>();
+                if (scroller != null) Destroy(scroller); // Stops moving while dying
+                
+                // Destroy after 2 seconds to let the death animation finish
+                Destroy(collision.gameObject, 1.5f);
+            }
+            else
+            {
+                // Destroy enemy instantly if no Spine animation is found
+                Destroy(collision.gameObject);
+            }
+
+            Destroy(gameObject); // destroy fireball
         }
         else if (collision.CompareTag("Obstacle")) // Walls
+
         {
             // Fire breath shouldn't destroy walls, just impact them
             if (impactEffectPrefab != null)
