@@ -9,6 +9,7 @@ TagManager:
   - Target
   - Ant
   - BadAnt
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,8 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject[] wallPrefabs; // e.g. tall walls with holes at lower or upper part
+    public GameObject[] lowerWallPrefabs; // e.g. stalagmites, walls attached to the ground
+    public GameObject[] upperWallPrefabs; // e.g. stalactites, walls attached to the ceiling
     public GameObject[] monsterPrefabs; // large monsters that block entirely
 
     [Header("Spawn Settings")]
@@ -13,7 +14,8 @@ public class ObstacleSpawner : MonoBehaviour
 
     [Header("Spawn Position Options")]
     public float monsterSpawnY = 0f;
-    public float wallSpawnY = 0f;
+    public float lowerWallSpawnY = -2.5f;
+    public float upperWallSpawnY = 2.5f;
 
     private float currentSpawnInterval;
     private float spawnTimer;
@@ -55,12 +57,36 @@ public class ObstacleSpawner : MonoBehaviour
             prefabToSpawn = monsterPrefabs[r];
             yPos = monsterSpawnY;
         }
-        else if (wallPrefabs != null && wallPrefabs.Length > 0)
+        else 
         {
-            // Spawn Wall
-            int r = Random.Range(0, wallPrefabs.Length);
-            prefabToSpawn = wallPrefabs[r];
-            yPos = wallSpawnY;
+            // Spawn Wall: 50% chance for upper wall, 50% chance for lower wall
+            bool spawnUpper = Random.value > 0.5f;
+
+            if (spawnUpper && upperWallPrefabs != null && upperWallPrefabs.Length > 0)
+            {
+                int r = Random.Range(0, upperWallPrefabs.Length);
+                prefabToSpawn = upperWallPrefabs[r];
+                yPos = upperWallSpawnY; // Fixed high position attached to ceiling
+            }
+            else if (!spawnUpper && lowerWallPrefabs != null && lowerWallPrefabs.Length > 0)
+            {
+                int r = Random.Range(0, lowerWallPrefabs.Length);
+                prefabToSpawn = lowerWallPrefabs[r];
+                yPos = lowerWallSpawnY; // Fixed low position attached to ground
+            }
+            // Fallbacks in case one array is empty but the other isn't
+            else if (lowerWallPrefabs != null && lowerWallPrefabs.Length > 0)
+            {
+                int r = Random.Range(0, lowerWallPrefabs.Length);
+                prefabToSpawn = lowerWallPrefabs[r];
+                yPos = lowerWallSpawnY;
+            }
+            else if (upperWallPrefabs != null && upperWallPrefabs.Length > 0)
+            {
+                int r = Random.Range(0, upperWallPrefabs.Length);
+                prefabToSpawn = upperWallPrefabs[r];
+                yPos = upperWallSpawnY;
+            }
         }
 
         if (prefabToSpawn != null)
