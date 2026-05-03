@@ -96,9 +96,13 @@ _A "Prefab" is a template. We make an object once, save it as a file, and then t
    - Add a `BoxCollider2D` and check **Is Trigger**.
    - Drag `Wall_High` into your Project Window as a Prefab and delete it from the Hierarchy.
 3. **Make the Giant Monster (Enemy):**
-   - Right-click Hierarchy > **2D Object > Sprite**. Name it `Monster_Big`. Assign a scary monster image and use the Rect Tool (T) to scale it up really tall.
-   - **Tag it:** Change the Tag to **Enemy**.
-   - Add a `BoxCollider2D` and check **Is Trigger**.
+   - We will use the Rabbit Spine animation! Open `Assets` > `Fantazia Animated 2D Monsters` > `Source_Animations` > `Monster_30_31_32_33_34_Rabbit`.
+   - Find the `monster_09_SkeletonData` asset and drag it into the Scene View. When prompted, select **SkeletonAnimation**.
+   - Rename this new object in the Hierarchy to `Monster_Big`.
+   - Make sure it faces the dragon (you may need to set its **Scale X** to negative).
+   - **Tag it:** Change the Tag at the top of the Inspector to **Enemy**.
+   - Add a `BoxCollider2D` and check **Is Trigger**. Adjust the collider to fit the rabbit's body.
+   - Click the `Monster_Big` object and look at the `SkeletonAnimation` script in the Inspector. Find the **Animation Name** starting field and type `Walk` so it runs toward you!
    - Drag it into your Project folder to make a Prefab. Delete it from the Hierarchy.
 
 ---

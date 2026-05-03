@@ -595,7 +595,7 @@ Transform:
   m_GameObject: {fileID: 193305571}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.69, y: -0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.90808, y: 0.90808, z: 0.90808}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1080,9 +1080,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameInputManager
   bindings:
   - actionType: 5
-    keys: 11010000
+    keys: 110100004a010000
   - actionType: 4
-    keys: 13010000
+    keys: 130100004b010000
 --- !u!4 &979529889
 Transform:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 66fb5ea25dcefc6459fe81bbfc769f03, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5dca80a0124647e49bcad55ffdeb0d1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1274,8 +1274,8 @@ Transform:
   m_GameObject: {fileID: 1106076357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -4.44, z: 0}
-  m_LocalScale: {x: 8.70195, y: 1.0141, z: 1.0141}
+  m_LocalPosition: {x: -0.38, y: -4.57, z: 0}
+  m_LocalScale: {x: 2.4492, y: 1.5890946, z: 1.0141}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1379,7 +1379,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: a52c61e4d863eb24eb1a6cec742bd3ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76b8a66219a52a44587e1b95fb85fd5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1398,8 +1398,8 @@ Transform:
   m_GameObject: {fileID: 1271971866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1634301, y: 0.9496528, z: 1.0212}
+  m_LocalPosition: {x: -0.4342, y: 0.0292, z: 0}
+  m_LocalScale: {x: 2.353011, y: 1.3332932, z: 1.0212}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1534,9 +1534,9 @@ MonoBehaviour:
   baseSpawnInterval: 2.5
   minSpawnInterval: 0.8
   spawnIntervalDecreaseRate: 0.05
-  monsterSpawnY: 0
-  lowerWallSpawnY: -2.5
-  upperWallSpawnY: 2.5
+  monsterSpawnY: -4.25
+  lowerWallSpawnY: -2.3
+  upperWallSpawnY: 2.7
 --- !u!4 &1363296824
 Transform:
   m_ObjectHideFlags: 0
